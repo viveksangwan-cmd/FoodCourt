@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'food-court-frontend';
+  showRecipe: Boolean = true;
+  toggleContent(event){
+    if(event==='Recipe') this.showRecipe = true;
+    else this.showRecipe = false;
+  }
 }
