@@ -1,7 +1,9 @@
-import { EventEmitter } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Recipe } from "src/app/shared/models/recipe.model";
 import { Ingredient } from "../models/ingredient.model";
+import { ShopplingListService } from "./shopping-list.service";
 
+@Injectable()
 export class RecipeService{
     private recipes: Recipe[] = [
         new Recipe(
@@ -23,10 +25,18 @@ export class RecipeService{
           new Ingredient('Garam Masala',.5)
         ])
       ];
+      constructor(private shopplingListService: ShopplingListService){}
+
+      allAllIngredientsToShoppingList(ingredients: Ingredient[]): void{
+        this.shopplingListService.addAllIngredients(ingredients);
+      }
+
+      getRecipeById(id: number): Recipe{
+        if(id<0 || id>=this.recipes.length) return new Recipe('NULL','NULL','NULL',[]);
+        return this.recipes[id];
+      }
 
       getRecipes(): Recipe[]{
         return this.recipes;
       }
-
-      selectedRecipeEmitter = new EventEmitter<Recipe>();    
 }

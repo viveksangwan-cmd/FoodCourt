@@ -1,4 +1,3 @@
-<app-header (toogleConetent)="toggleContent($event)"></app-header>
+<app-header></app-header>
 <hr>
-<app-recipes [hidden]="!showRecipe"></app-recipes>
-<app-shopping-list [hidden]="showRecipe"></app-shopping-list>
+<router-outlet></router-outlet>
